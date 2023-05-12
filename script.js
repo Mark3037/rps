@@ -1,8 +1,8 @@
 // function to create a randomly generated computer choice
 function getComputerChoice() {
-    'make an array of options'
-    'make a random number'
-    return "random index of array"
+    const choices = ["rock", "paper", "scissors"];
+    const num = Math.floor(Math.random() * choices.length)
+    return choices[num]
 }
 
 // function that plays a single round and declares winner
