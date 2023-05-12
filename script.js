@@ -14,14 +14,13 @@ function playRound(playerSelection, computerSelection) {
 
 // function that checks conditions of player choice
 function playerCheck(choice) {
-    'make choice lowercase'
-    'make sure its rock, paper, or scissors'
-    'if valid'
-        'return'
-    'if invalid'
-        'reprompt for answer change'
-        'rerun playerCheck'
-    return choice
+    let newChoice = choice.toLowerCase();
+    if(newChoice === "rock" || newChoice === "paper" || newChoice === "scissors") {
+        return newChoice
+    } else {
+        newChoice = prompt("What is your choice?")
+        return playerCheck(newChoice)
+    }
 }
 
 // function that plays 5 rounds, keeps score, and declares winner
@@ -34,4 +33,4 @@ function game() {
     return 'winner and score'
 }
 
-console.log(game());
+console.log(playerCheck("rack"));
