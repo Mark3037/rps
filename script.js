@@ -7,19 +7,43 @@ function getComputerChoice() {
 
 // function that plays a single round and declares winner
 function playRound(choice) {
-    const results = document.querySelector("div.results");
+    const result = document.querySelector("p.results");
     let playerSelection = choice;
     let computerSelection = getComputerChoice();
     if(playerSelection === computerSelection) {
-        results.textContent = `A tie! You both picked ${playerSelection}`
+        result.textContent = `A tie! You both picked ${playerSelection}`
+        return "tie"
     } else if(playerSelection === "rock" && computerSelection === "scissors" ||
        playerSelection === "paper" && computerSelection === "rock" ||
        playerSelection === "scissors" && computerSelection === "paper") {
-        results.textContent = `You win! ${playerSelection} beats ${computerSelection}`
+        result.textContent = `You win! ${playerSelection} beats ${computerSelection}`
+        return "win"
     } else {
-        results.textContent = `You lose! ${computerSelection} beats ${playerSelection}`
+        result.textContent = `You lose! ${computerSelection} beats ${playerSelection}`
+        return "loss"
+    }
+}
+
+function checkScore(score) {
+    return
+}
+
+let winCount = 0;
+let lossCount = 0;
+function game(choice) {
+    const winDisplay = document.querySelector("p.wins");
+    const lossDisplay = document.querySelector("p.losses");
+    const result = playRound(choice);
+    if(result === "win") {
+        winDisplay.textContent = `Wins: ${++winCount}`;
+        checkScore(winCount)
+    } else if(result === "loss") {
+        lossDisplay.textContent = `Losses: ${++lossCount}`
+        checkScore(lossCount)
+    } else {
+        return
     }
 }
 
 const buttons = document.querySelectorAll(".buttons-display button");
-buttons.forEach(button => button.addEventListener("click", () => playRound(button.className)));
+buttons.forEach(button => button.addEventListener("click", () => game(button.className)));
