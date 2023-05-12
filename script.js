@@ -1,3 +1,9 @@
+const result = document.querySelector("p.results");
+const winDisplay = document.querySelector("p.wins");
+const lossDisplay = document.querySelector("p.losses");
+let winCount = 0;
+let lossCount = 0;
+
 // function to create a randomly generated computer choice
 function getComputerChoice() {
     const choices = ["rock", "paper", "scissors"];
@@ -7,7 +13,6 @@ function getComputerChoice() {
 
 // function that plays a single round and declares winner
 function playRound(choice) {
-    const result = document.querySelector("p.results");
     let playerSelection = choice;
     let computerSelection = getComputerChoice();
     if(playerSelection === computerSelection) {
@@ -24,22 +29,25 @@ function playRound(choice) {
     }
 }
 
-function checkScore(score) {
-    return
+function checkScore() {
+    if(winCount === 5) {
+        result.textContent = "You won the game!";
+    } else {
+        result.textContent = "You lost the game."
+    }
+    winDisplay.textContent = ""
+    lossDisplay.textContent = ""
+    winCount = lossCount = 0;
 }
 
-let winCount = 0;
-let lossCount = 0;
 function game(choice) {
-    const winDisplay = document.querySelector("p.wins");
-    const lossDisplay = document.querySelector("p.losses");
     const result = playRound(choice);
     if(result === "win") {
         winDisplay.textContent = `Wins: ${++winCount}`;
-        checkScore(winCount)
+        if(winCount === 5) checkScore()
     } else if(result === "loss") {
         lossDisplay.textContent = `Losses: ${++lossCount}`
-        checkScore(lossCount)
+        if(lossCount === 5) checkScore()
     } else {
         return
     }
