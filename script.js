@@ -1,6 +1,6 @@
-const result = document.querySelector("p.results");
-const winDisplay = document.querySelector("p.wins");
-const lossDisplay = document.querySelector("p.losses");
+const result = document.querySelector("div.results");
+const winDisplay = document.querySelector("div.wins");
+const lossDisplay = document.querySelector("div.losses");
 let winCount = 0;
 let lossCount = 0;
 
@@ -35,17 +35,19 @@ function checkScore() {
     } else {
         result.textContent = "You lost the game."
     }
+    result.style.fontSize = "120px";
     winDisplay.textContent = ""
     lossDisplay.textContent = ""
     winCount = lossCount = 0;
 }
 
 function game(choice) {
-    const result = playRound(choice);
-    if(result === "win") {
+    result.style.fontSize = "50px"
+    const results = playRound(choice);
+    if(results === "win") {
         winDisplay.textContent = `Wins: ${++winCount}`;
         if(winCount === 5) checkScore()
-    } else if(result === "loss") {
+    } else if(results === "loss") {
         lossDisplay.textContent = `Losses: ${++lossCount}`
         if(lossCount === 5) checkScore()
     } else {
